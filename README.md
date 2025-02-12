@@ -15,4 +15,4 @@ navbar fully integrated with all site buttons (LOGIN/HOME/ABOUT/PASSWORDS/GENERA
 12/02/25 sprint meeting recap
 having to find a workaround for a solution without using NODE
 created a random generated password script for my generated page
-pages have basic styling
+pages now all have basic styling
