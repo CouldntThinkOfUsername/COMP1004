@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>insert data </legend>
+        <input id = "inpKey" type = "text" placeholder="enter key...">
+        <input id = "inpValue" type = "text" placeholder="enter value...">
+        <button type="button" id="button_store"> store</button>
+    </fieldset>
+
+    <fieldset>
+        <legend>storage</legend>
+        <div id="local_output">
+        </div>
+    </fieldset>
+    
+</body>
+</html>
+
+<script>
+    const inpKey = document.getElementById("inpKey");
+    const inpValue = document.getElementById("inpValue");
+    const button_store = document.getElementById("button_store");
+    const LSoutput = document.getElementById("local_output");
+
+    button_store.onclick = function () {
+        const key = inpKey.value;
+        const value = inpValue.value;
+
+        console.log(key);
+        console.log(value);
+
+        if (key && value) {
+            localStorage.setItem(key, value);
+            
+            for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            console.log(key);
+            const value = localStorage.getItem(key);
+
+            LSoutput.innerHTML += ((key)+": "+(value) + '<br>');
+
+            };
+
+        };
+    };
+
+    
+
+
+
+
+
+
+
+
+    // let userData = {
+    //     "Website" : "Gmail.com",
+    //     "Username" : "MailInbox@gmail.com",
+    //     "Password" : "Password1234!"
+    // };
+
+    // let userData_string = JSON.stringify(userData);
+
+    // localStorage.setItem("Data" , userData_string);
+
+    // let userData_raw = JSON.parse(localStorage.getItem("Data"));
+
+
+    
+
+
+    // //debug outputs 
+    // console.log(userData_raw);
+
+
+
+
+    /*citations:
+    https://www.w3schools.com/jsref/prop_win_localstorage.asp
+    https://www.youtube.com/watch?v=AUOzvFzdIk4
+    https://www.youtube.com/watch?v=k8yJCeuP6I8
+
+    */
+</script>
