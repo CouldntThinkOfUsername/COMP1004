@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blob practice for SPA</title>
+</head>
+<body>
+
+<input type="file" id="fileInput" />
+
+
+<pre id="jsonOutput"></pre>
+
+<script>
+  //Get a blob to read and outout the content of a user submitted JSON file
+
+  document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
+
+  function handleFileSelect(event) {
+  
+    const file = event.target.files[0];
+
+    const blob = new Blob([file], { type: "application/json" });
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const jsonContent = e.target.result;
+
+      const outputElement = document.getElementById('jsonOutput');
+      outputElement.textContent = jsonContent;
+    };
+
+    reader.readAsText(blob);
+  }
+</script>
+
+</body>
+</html>

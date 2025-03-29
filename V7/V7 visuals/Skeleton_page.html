@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+</head>
+<body>
+    <header>
+        <h1>THIS PAGE EXISTS SOLELY AS THE FOUNDATIONS OF THE WORKING FUNCTIONALITY</h1>
+    </header>
+
+    <div id="Passwords">
+        <main>
+            <div id="pwd_in">
+                <form action="#" id="LoginInput">
+                    <h2>Enter details here:</h2>
+                    <div class="site_box">
+                        <label for="site">Site:</label>
+                        <input type="text" id="site" placeholder="Enter site" aria-label="Site name">
+                    </div>
+
+                    <div class="username_box">
+                        <label for="username">Username:</label>
+                        <input type="text" id="name" placeholder="Enter username" aria-label="Username">
+                    </div>
+
+                    <div class="password_box">
+                        <label for="password">Password:</label>
+                        <input type="password" id="pwd" placeholder="Enter password" aria-label="Password">
+                    </div>
+
+                    <div class="button_boxes">
+                        <button class="function_button" type="submit" id="save_btn">Save password</button>
+                        <button class="function_button" type="button" id="load_btn">Load passwords</button>
+                    </div>
+                </form>
+            </div>
+
+            <div>
+                <h3>Loaded JSON Content</h3>
+                <pre id="jsonOutput"></pre> 
+            </div>
+
+            <div>
+                <label for="fileInput">Select JSON file to load:</label>
+                <input type="file" id="fileInput" />
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="bottom_bar">
+            <p>&copy; 2024 Jamie Woodacre. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+
+        //makes an array out of the local storage objects 
+        let savedPasswords = JSON.parse(localStorage.getItem('passwords')) || [];
+
+        //takes the file input for the passwords.json
+        document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) {
+                alert("Please select a file");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const jsonContent = e.target.result;
+
+                try {
+                    const parsedContent = JSON.parse(jsonContent);
+                    const outputElement = document.getElementById('jsonOutput');
+                    if (outputElement) {
+                        outputElement.textContent = JSON.stringify(parsedContent, null, 2);
+                    }
+                    savedPasswords = parsedContent;
+
+                    //outputs to local storage
+                    localStorage.setItem('passwords', JSON.stringify(savedPasswords));
+                }
+                //error handling 
+                catch (error) {
+                    alert("Error parsing JSON file. Please make sure the file is in valid JSON format. Error details: " + error.message);
+                    console.error("Error parsing JSON:", error);
+                }
+            };
+
+            reader.readAsText(file);
+        }
+
+        //saves the form data and updates local storage
+        document.getElementById('LoginInput').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const site = document.getElementById('site').value;
+            const username = document.getElementById('name').value;
+            const password = document.getElementById('pwd').value;
+
+            //create a new object to store credentials
+            const newPassword = {
+                Website: site,
+                Username: username,
+                Password: password
+            };
+
+            //updates the array for the local storage
+            savedPasswords.push(newPassword);
+
+            //save the updated list to local storage 
+            localStorage.setItem('passwords', JSON.stringify(savedPasswords));
+
+            //download the updated list
+            const jsonBlob = new Blob([JSON.stringify(savedPasswords, null, 2)], { type: 'application/json' });
+            const downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(jsonBlob);
+            downloadLink.download = 'passwords.json';
+            downloadLink.click();
+        });
+      
+    </script>
+</body>
+</html>

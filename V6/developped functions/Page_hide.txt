@@ -1,0 +1,31 @@
+    //function that hides the password input page by setting the display to block when pressed
+    function PasswordPage() {
+        //variables defining the tab content items representing the pages
+      var x = document.getElementById("Passwords");
+      var y = document.getElementById("Home");
+
+      if (x.style.display === "none") {
+        x.style.display = "block";
+        y.style.display = "none";
+      } 
+
+      else {
+        x.style.display = "block";
+        y.style.display = "none";
+      }
+    }
+    //same function but for the home button on the nav bar
+    function HomePage() {
+      var x = document.getElementById("Home");
+      var y = document.getElementById("Passwords");
+      
+      if (x.style.display === "none") {
+        x.style.display = "block";
+        y.style.display = "none";
+        
+      } 
+      else {
+        x.style.display = "block";
+        y.style.display = "none";
+      }
+    }

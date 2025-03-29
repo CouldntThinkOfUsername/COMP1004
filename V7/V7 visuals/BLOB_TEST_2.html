@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>combining with form inputs from SPA</title>
+</head>
+<body>
+
+<form id="userInputForm">
+
+    <h2>Enter details here:</h2>
+
+    <div class="site_box">
+        <label for="site">Site:</label>
+        <input type="text" id="name" placeholder="Enter site" aria-label="Site name">
+    </div>
+
+    <div class="username_box">
+        <label for="username">Username:</label>
+        <input type="text" id="age" placeholder="Enter username" aria-label="Username">
+    </div>
+
+    <div class="password_box">
+        <label for="password">Password:</label>
+        <input type="password" id="city" placeholder="Enter password" aria-label="Password">
+    </div>
+
+    <div class="button_boxes">
+        <button class="function_button" type="submit" id = "save_btn" onclick="saveValues()">Save password.</button>
+        <button class="function_button" type="button" id = "load_btn" onclick="loadValues()">Load passwords.</button>
+    </div>
+
+</form>
+
+<pre id="jsonOutput"></pre>
+
+<script>
+//writing to a JSON and then creating a new file to download containing the information from the user inputs
+  document.getElementById('userInputForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const age = document.getElementById('age').value;
+    const city = document.getElementById('city').value;
+
+    const userData = {
+      name: name,
+      age: age,
+      city: city
+    };
+
+    document.getElementById('jsonOutput').textContent = JSON.stringify(userData, null, 2);
+
+    const jsonBlob = new Blob([JSON.stringify(userData, null, 2)], { type: 'application/json' });
+
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(jsonBlob); 
+    downloadLink.download = 'userData.json'; 
+    downloadLink.click();
+  });
+</script>
+
+</body>
+</html>

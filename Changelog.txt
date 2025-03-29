@@ -1,0 +1,38 @@
+V1 -> V2: (sprint 1)
+-Added Styling
+-fixed footer not sticking to bottom of viewport
+-developed basic page showing/hiding script
+-integrated the text input boxes and buttons properly
+-nav bar functionality
+
+V2 -> V3: (sprint 2)
+-Added new buttons to navbar
+-Navigation to each segment (displays only headers)
+
+V3 -> V4: (sprint 3)
+-All pages now have boxes around header
+-Developed a script to generate a random password for user
+-Styled box for generator page
+-Added generate password button
+-Added underline hover effect on generated password
+
+V4 -> V5: (sprint 4)
+-fixed bug with password generator (the end was the same if the new password was shorter than the previously generated one)
+-started making a script to save to local storage
+-integration of the script into the website using the save button to write to local storage and log in console on load button 
+
+V5 -> V6: (sprint 5)
+-Populated About page 
+-Created separate form to display results when pressing Load that replaces the input boxes
+-Created passwords.json to read from
+-Created a script to read JSON files
+-Integrated the Reading script and had it output results in an unordered list using fetch
+-Unordered list is set to scroll if there are a lot of entries that would otherwise take up the whole screen
+-Added input fields to the login screen (non functional)
+
+V6 -> V7: (sprint 6)
+-Redesigned how the SPA reads the JSON file (File was loaded using fetch previously on a live server (cannot be used according to the leader of the sprint meetings))
+-Writes to a file to be downloaded each time containing information
+-Load page adapted to a file upload page to upload information
+-Got a working bare-bones 1 page prototype to demonstrate functionality and get it working prior to intergration with the styling
+-Uses local storage to temporarily hold inputted details before file downloaded 
