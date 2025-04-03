@@ -10,9 +10,9 @@ Using multiple passwords is always the best practice, however, people are put of
 
 
 --- How it works ---
-It utilises a Binary level object (BLOB) to write the details provided by the user to a formatted JSON file.
-It uses random number generation (RNG) to create passswords for the user to use.
-It has the ability to read user login information stored in the formatted files and output them in a readable format.
++ It utilises a Binary level object (BLOB) to write the details provided by the user to a formatted JSON file.
++ It uses random number generation (RNG) to create passswords for the user to use.
++ It has the ability to read user login information stored in the formatted files and output them in a readable format.
 
 ---Future features ---
 + A fully functional login system
